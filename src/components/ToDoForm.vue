@@ -1,7 +1,8 @@
 <template>
     <form @submit.prevent="onsubmit">
-        <label for="new-todo-input"> What needs to be done? </label>
-
+        <h2 class="label-wrapper">
+        <label for="new-todo-input" class="label__lg"> What needs to be done? </label>
+        </h2>
         <input
         type="text"
         id="new-todo-input"
@@ -11,7 +12,9 @@
         />
 
         <button
-        type="submit"> Add Task </button>
+        type="submit"
+        class="btn btn__primary btn__lg"
+        > Add Task </button>
     </form>
 </template>
 
@@ -19,7 +22,12 @@
     export default {
         methods: {
             onsubmit() {
+                if (this.label === "")
+                { 
+                    return;
+                }
                 this.$emit("todo-added", this.label);
+                this.label = "";
             }
         },
         data() {
